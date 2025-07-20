@@ -1,3 +1,4 @@
+
 package org.banking.ebankingbackend.Entities;
 
 import jakarta.persistence.*;
@@ -9,34 +10,22 @@ import org.banking.ebankingbackend.Enums.AccountStatus;
 import java.util.Date;
 import java.util.List;
 
-
-@Data
-@NoArgsConstructor @AllArgsConstructor
-@Table(name = "accounts")
-@Inheritance(strategy = InheritanceType.JOINED)
-
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+//@DiscriminatorColumn(name = "TYPE" ,length = 10)
+@Data @NoArgsConstructor @AllArgsConstructor
 public class Account {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date createdAt;
     private Double balance;
-
+    private Date createdAt;
+    private String currency;
     @Enumerated(EnumType.STRING)
     private AccountStatus status;
-    private String currency;
 
     @ManyToOne
     private Customer customer;
-
     @OneToMany(mappedBy = "account")
     private List<Operation> operations;
-
-    @OneToOne(mappedBy = "account")
-    private SavingAccount savingAccount;
-
-    @OneToOne(mappedBy = "account")
-    private CurrentAccount currentAccount;
 }

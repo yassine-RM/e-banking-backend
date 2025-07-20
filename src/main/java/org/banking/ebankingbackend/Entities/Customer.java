@@ -10,7 +10,6 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor @AllArgsConstructor
-@Table(name = "customers")
 @Entity
 public class Customer {
 

@@ -11,7 +11,6 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor @AllArgsConstructor
-@Table(name = "operations")
 @Entity
 public class Operation {
 
@@ -20,6 +19,7 @@ public class Operation {
     private Long id;
     private Date createdAt;
     private Double amount;
+    @Enumerated(EnumType.STRING)
     private OperationType type;
 
     @ManyToOne
