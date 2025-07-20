@@ -4,6 +4,7 @@ import org.banking.ebankingbackend.Entities.*;
 import org.banking.ebankingbackend.Enums.AccountStatus;
 import org.banking.ebankingbackend.Enums.OperationType;
 import org.banking.ebankingbackend.Repositories.*;
+import org.banking.ebankingbackend.Services.BankService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +21,12 @@ public class EBankingBackendApplication {
     }
 
     @Bean
+    CommandLineRunner start(
+            BankService bankService
+    ){
+        return args -> bankService.consultAccountOperations();
+    }
+//    @Bean
     CommandLineRunner runner(
             CustomerRepository customerRepository,
             AccountRepository accountRepository,
